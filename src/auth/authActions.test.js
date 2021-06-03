@@ -6,7 +6,7 @@ describe("authActions", () => {
       jest.spyOn(window.localStorage.__proto__, "clear");
       const dispatch = jest.fn();
       logout(dispatch);
-      expect(localStorage.setItem).toHaveBeenCalled();
+      expect(localStorage.clear).toHaveBeenCalled();
       expect(dispatch).toHaveBeenCalledWith({ type: "auth.logout" });
     });
   });
