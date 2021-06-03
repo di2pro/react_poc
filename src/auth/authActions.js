@@ -54,11 +54,11 @@ export const authenticate = ({ email, password }) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (email !== "test@test.test" || password !== "test1234") {
-        return reject();
+        return reject(new Error("invalid credentials"));
       }
 
       return resolve("secret");
-    }, 4000);
+    }, 2000);
   });
 };
 
