@@ -3,10 +3,10 @@ import { authenticate, login, logout } from "./authActions";
 describe("authActions", () => {
   describe("logout", () => {
     it("should clear token and dispatch", () => {
-      jest.spyOn(window.localStorage.__proto__, "setItem");
+      jest.spyOn(window.localStorage.__proto__, "clear");
       const dispatch = jest.fn();
       logout(dispatch);
-      expect(localStorage.setItem).toHaveBeenCalledWith("token", null);
+      expect(localStorage.setItem).toHaveBeenCalled();
       expect(dispatch).toHaveBeenCalledWith({ type: "auth.logout" });
     });
   });

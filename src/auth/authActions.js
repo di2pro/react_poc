@@ -63,7 +63,7 @@ export const authenticate = ({ email, password }) => {
 };
 
 export const logout = (dispatch) => {
-  localStorage.setItem("token", null);
+  localStorage.clear();
   dispatch({
     type: AUTH_ACTION_TYPES.LOGOUT,
   });
