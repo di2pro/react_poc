@@ -1,0 +1,31 @@
+name: CI
+
+on: push
+
+jobs:
+  test-client:
+    name: Test web client
+    runs-on: ubuntu-latest
+    steps:
+      - name: getting repo
+        uses: actions/checkout@v1
+
+      - name: setting up node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: installing dependencies
+        run: npm install
+
+      - name: running tests
+        run: npm test
+        env:
+          CI: true
